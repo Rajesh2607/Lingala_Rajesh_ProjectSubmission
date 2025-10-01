@@ -22,7 +22,7 @@ def execute_sql_statement(rds_client, cluster_arn, secret_arn, sql_statement):
 def main():
     # AWS configuration from terraform outputs
     cluster_arn = "arn:aws:rds:us-west-2:133720367604:cluster:my-aurora-serverless"
-    secret_arn = "arn:aws:secretsmanager:us-west-2:133720367604:secret:my-aurora-serverless-D8pFMK"
+    secret_arn = "arn:aws:secretsmanager:us-west-2:133720367604:secret:my-aurora-serverless-1NyjuJ"
     
     # Initialize RDS Data client
     rds_client = boto3.client('rds-data', region_name='us-west-2')

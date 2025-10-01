@@ -1,0 +1,83 @@
+🔧 IMPORTANT: How to Connect to Aurora PostgreSQL in RDS Query Editor
+═══════════════════════════════════════════════════════════════════════
+
+❌ PROBLEM: You're still using RDS Data API connection which gives permission errors!
+
+✅ SOLUTION: Use Database Credentials connection instead
+
+📋 STEP-BY-STEP INSTRUCTIONS:
+═══════════════════════════════════════════════════════════════════════
+
+1. 🌐 Go to AWS RDS Console
+   → https://console.aws.amazon.com/rds/
+
+2. 🔍 Find your Aurora cluster
+   → Look for: "my-aurora-serverless"
+   → Click on the cluster name
+
+3. 🗂️ Click "Query Editor" tab
+   → This should be in the top menu of the cluster details page
+
+4. 🚨 CRUCIAL STEP: Choose the RIGHT connection method
+   ═══════════════════════════════════════════════════════════════════
+   
+   ❌ DO NOT choose: "Connect using RDS Data API"
+   ❌ DO NOT choose: "Connect using AWS Secrets Manager"
+   
+   ✅ INSTEAD: Look for "Add new database credentials" button
+   ✅ Click: "Add new database credentials"
+   ✅ Select: "Connect using database credentials"
+
+5. 📝 Enter these credentials MANUALLY:
+   ═══════════════════════════════════════════════════════════════════
+   
+   Database username: dbadmin
+   Database password: %252m!KjPM$(5[LX
+   Database name: myapp
+   
+   (Copy-paste the password exactly as shown above)
+
+6. 🔗 Click "Connect to database"
+
+7. ✅ Once connected, you'll see a query interface
+   → The connection should show as successful
+   → You should NOT see any permission errors
+
+8. 📊 Run the verification queries ONE BY ONE:
+   ═══════════════════════════════════════════════════════════════════
+
+   Query 1: SELECT * FROM pg_extension;
+   
+   Query 2: SELECT 
+               table_schema || '.' || table_name as show_tables,
+               table_type
+            FROM 
+               information_schema.tables 
+            WHERE 
+               table_type = 'BASE TABLE' 
+            AND 
+               table_schema = 'bedrock_integration';
+
+   Query 3: SELECT version();
+
+📸 IMPORTANT: Take screenshots of each query result!
+
+═══════════════════════════════════════════════════════════════════════
+🎯 KEY DIFFERENCES:
+═══════════════════════════════════════════════════════════════════════
+
+❌ RDS Data API Connection:
+   - Uses AWS IAM permissions
+   - Requires rds-data:ExecuteStatement permission
+   - Not available in your AWS Lab environment
+
+✅ Database Credentials Connection:
+   - Uses PostgreSQL native authentication
+   - Uses database username/password directly
+   - Works with standard database permissions
+   - This is what you need to use!
+
+═══════════════════════════════════════════════════════════════════════
+🔥 If you still see permission errors after following these steps exactly,
+   please share a screenshot of the connection interface you're seeing!
+═══════════════════════════════════════════════════════════════════════
