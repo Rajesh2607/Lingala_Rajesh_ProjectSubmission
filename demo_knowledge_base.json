@@ -1,0 +1,16 @@
+{
+  "knowledge_base_id": "DEMO-KB-HEAVY-MACHINERY-2025",
+  "name": "Heavy Machinery Knowledge Base",
+  "description": "Demo KB for heavy machinery specifications",
+  "status": "DEMO_MODE",
+  "documents": [
+    "bulldozer-bd850-spec-sheet.pdf",
+    "dump-truck-dt1000-spec-sheet.pdf",
+    "excavator-x950-spec-sheet.pdf",
+    "forklift-fl250-spec-sheet.pdf",
+    "mobile-crane-mc750-spec-sheet.pdf"
+  ],
+  "created_at": "2025-10-01T16:16:39.832510",
+  "s3_bucket": "bedrock-kb-133720367604",
+  "region": "us-west-2"
+}
